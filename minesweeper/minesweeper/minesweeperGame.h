@@ -49,14 +49,14 @@ namespace minesweeper
     int numMines;
     bool isGameBoardRevealed() const;
     void revealAllMines();
-    void revealCell( std::pair<int, int> );
-    bool isMine( std::pair<int, int> ) const;
-    int getNumberOfNeighboringMines( const std::pair<int, int> );
-    std::set<std::pair<int, int>> getNeighborCoordinates( const std::pair<int, int> );
-    void setGameLost( const std::pair<int, int> );
+    void revealCell( coordinate );
+    bool isMine( coordinate ) const;
+    int getNumberOfNeighboringMines( const coordinate );
+    setOfCoordinates getNeighborCoordinates( const coordinate );
+    void setGameLost( const coordinate );
     void setGameWon();
-    void activeCell( std::pair<int, int> );
-    bool isCellRevealedAndHasNeighboringMines( std::pair<int, int> );
+    void activeCell( coordinate );
+    bool isCellRevealedAndHasNeighboringMines( coordinate );
     bool areTheNumberOfMarkedMinesEqualToCellValue( coordinate );
     setOfCoordinates getNeighborCoordinatesBasedOnState( coordinate, cellStateEnum );
     int getNumberOfNeighborsBasedOnState( coordinate, cellStateEnum );
@@ -67,11 +67,11 @@ namespace minesweeper
     int getHeight() const;
     int getNumMines() const;
     gameBoard getBoard() const;
-    void leftClickCell( std::pair<int, int> );
-    void rightClickCell( std::pair<int, int> );
+    void leftClickCell( coordinate );
+    void rightClickCell( coordinate );
     void generateBoard( gameBoard&, const uint8_t, const uint8_t );
     void generateMines( mineField&, const uint8_t, const uint8_t, const uint16_t );
-    bool isValidCoordinate( std::pair<int, int> ) const;
+    bool isValidCoordinate( coordinate ) const;
     bool isGameActive() const;
 
   };

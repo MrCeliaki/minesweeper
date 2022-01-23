@@ -104,10 +104,21 @@ void printChar( minesweeper::cellStateEnum state )
 
 void displayBoard( minesweeper::ms_game game )
 {
-  HANDLE hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
-  SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_WHITE );
-
   minesweeper::gameBoard board = game.getBoard();
+
+  std::cout << "   ";
+  for ( int col = 1; col <= game.getWidth(); col++ )
+  {
+    if ( col < 10 )
+    {
+      std::cout << " " << col << " ";
+    }
+    else
+    {
+      std::cout << col << " ";
+    }
+  }
+  std::cout << std::endl;
 
   for ( int row = 1; row <= game.getHeight(); row++ )
   {
@@ -124,11 +135,24 @@ void displayBoard( minesweeper::ms_game game )
     {
       if ( col != 1 )
       {
-        std::cout << ' ';
+        std::cout << "  ";
       }
       printChar( board[ std::make_pair( col, row ) ] );
     }
     std::cout << "  " << row << std::endl;
+  }
+
+  std::cout << "   ";
+  for ( int col = 1; col <= game.getWidth(); col++ )
+  {
+    if ( col < 10 )
+    {
+      std::cout << " " << col << " ";
+    }
+    else
+    {
+      std::cout << col << " ";
+    }
   }
 
 }
@@ -199,6 +223,9 @@ int main( int argc, char **argv )
 
   minesweeper::ms_game game( width, height, numOfMine );
 
+  HANDLE hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
+  SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_WHITE );
+
   system( "cls" );
   displayBoard( game );
 
@@ -218,7 +245,7 @@ int main( int argc, char **argv )
       std::cout << std::endl;
       std::cin >> arg >> col >> row;
     }
-    std::pair<int, int> coordinate = std::make_pair( col, row );
+    std::pair<int, int> clickCoordinate = std::make_pair( col, row );
 
     switch ( arg[ 0 ] )
     {
@@ -226,15 +253,15 @@ int main( int argc, char **argv )
       keepPlaying = false;
       break;
     case 'l':
-      if ( game.isValidCoordinate( coordinate ) )
+      if ( game.isValidCoordinate( clickCoordinate ) )
       {
-        game.leftClickCell( coordinate );
+        game.leftClickCell( clickCoordinate );
       }
       break;
     case 'r':
-      if ( game.isValidCoordinate( coordinate ) )
+      if ( game.isValidCoordinate( clickCoordinate ) )
       {
-        game.rightClickCell( coordinate );
+        game.rightClickCell( clickCoordinate );
       }
       break;
     default:

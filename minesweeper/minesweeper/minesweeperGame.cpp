@@ -68,7 +68,7 @@ namespace minesweeper
     }
   }
 
-  void ms_game::leftClickCell( std::pair<int, int> inputCoordinate )
+  void ms_game::leftClickCell( coordinate inputCoordinate )
   {// Rework needed
     if ( ( gameState != gameStateEnum::playing ) ||
       ( !isValidCoordinate( inputCoordinate ) ) )
@@ -111,7 +111,7 @@ namespace minesweeper
     }
   }
 
-  void ms_game::rightClickCell( std::pair<int, int> inputCoordinate )
+  void ms_game::rightClickCell( coordinate inputCoordinate )
   {
     if ( ( gameState != gameStateEnum::playing ) ||
       ( !isValidCoordinate( inputCoordinate ) ) )
@@ -135,10 +135,10 @@ namespace minesweeper
 
   }
 
-  void ms_game::activeCell( std::pair<int, int> inputCoordinate )
+  void ms_game::activeCell( coordinate inputCoordinate )
   {// Rework needed and rename?
-    std::set<std::pair<int, int>> coordinateHistory;
-    std::queue<std::pair<int, int>> jobQueue;
+    setOfCoordinates coordinateHistory;
+    std::queue<coordinate> jobQueue;
     coordinateHistory.insert( inputCoordinate );
     jobQueue.push( inputCoordinate );
 
@@ -153,7 +153,7 @@ namespace minesweeper
 
       if ( board[ jobQueue.front() ] == cellStateEnum::empty )
       {
-        std::set<std::pair<int, int>> neighbors = getNeighborCoordinates( jobQueue.front() );
+        setOfCoordinates neighbors = getNeighborCoordinates( jobQueue.front() );
 
         for ( auto iter = neighbors.begin(); iter != neighbors.end(); ++iter )
         {
@@ -169,7 +169,7 @@ namespace minesweeper
     }
   }
 
-  void ms_game::revealCell( std::pair<int, int> inputCoordinate )
+  void ms_game::revealCell( coordinate inputCoordinate )
   {// Rework needed and rename?
     if ( ( !isValidCoordinate( inputCoordinate ) ) )
     {
@@ -219,15 +219,15 @@ namespace minesweeper
     }
   }
 
-  std::set<std::pair<int, int>> ms_game::getNeighborCoordinates( const std::pair<int, int> inputCoordinate )
+  setOfCoordinates ms_game::getNeighborCoordinates( const coordinate inputCoordinate )
   {
-    std::set<std::pair<int, int>> neighbors;
+    setOfCoordinates neighbors;
 
     for ( int col = -1; col <= 1; col++ )
     {
       for ( int row = -1; row <= 1; row++ )
       {
-        std::pair<int, int> neighborCoordinate = std::make_pair( inputCoordinate.first + col, inputCoordinate.second + row );
+        coordinate neighborCoordinate = std::make_pair( inputCoordinate.first + col, inputCoordinate.second + row );
 
         if ( isValidCoordinate( neighborCoordinate ) &&
           inputCoordinate != neighborCoordinate )
@@ -240,14 +240,14 @@ namespace minesweeper
     return neighbors;
   }
 
-  int ms_game::getNumberOfNeighboringMines( const std::pair<int, int> inputCoordinate )
+  int ms_game::getNumberOfNeighboringMines( const coordinate inputCoordinate )
   {
     if ( !isValidCoordinate( inputCoordinate ) )
     {
       throw std::exception( "numberOfNeighbouringMines: Dead Programs Tell No Lies" );
     }
 
-    std::set<std::pair<int, int>> neighbors = getNeighborCoordinates( inputCoordinate );
+    setOfCoordinates neighbors = getNeighborCoordinates( inputCoordinate );
 
     int neighbouringMines = 0;
     for ( auto iter = neighbors.begin(); iter != neighbors.end(); ++iter )
@@ -261,12 +261,12 @@ namespace minesweeper
     return neighbouringMines;
   }
 
-  bool ms_game::isMine( std::pair<int, int> inputCoordinate ) const
+  bool ms_game::isMine( coordinate inputCoordinate ) const
   {
     return mines.find( inputCoordinate ) != mines.end();
   }
 
-  bool ms_game::isValidCoordinate( std::pair<int, int> inputCoordinate ) const
+  bool ms_game::isValidCoordinate( coordinate inputCoordinate ) const
   {
     return inputCoordinate.first >= 1 && inputCoordinate.first <= width &&
       inputCoordinate.second >= 1 && inputCoordinate.second <= height;
@@ -329,7 +329,7 @@ namespace minesweeper
     return gameState == gameStateEnum::playing;
   }
 
-  void ms_game::setGameLost( const std::pair<int, int> inputCoordinate )
+  void ms_game::setGameLost( const coordinate inputCoordinate )
   {
     if ( !isValidCoordinate( inputCoordinate ) ||
       !isMine( inputCoordinate ) )
@@ -344,11 +344,11 @@ namespace minesweeper
 
   void ms_game::setGameWon()
   {
-    gameState == gameStateEnum::won;
+    gameState = gameStateEnum::won;
     revealAllMines();
   }
 
-  bool ms_game::isCellRevealedAndHasNeighboringMines( std::pair<int, int> inputCoordinate )
+  bool ms_game::isCellRevealedAndHasNeighboringMines( coordinate inputCoordinate )
   {//Change name
     return ( ( board[ inputCoordinate ] == cellStateEnum::oneBlue ) ||
       ( board[ inputCoordinate ] == cellStateEnum::twoGreen ) ||
