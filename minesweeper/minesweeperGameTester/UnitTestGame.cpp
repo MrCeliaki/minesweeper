@@ -7,7 +7,7 @@ TEST( CreateBoards, BeginnerBoard )
   int height = 9;
   int numOfMine = 10;
 
-  const minesweeper::ms_game game( width, height, numOfMine );
+  const minesweeperGame::ms_game game( width, height, numOfMine );
 
   SUCCEED();
 }
@@ -18,7 +18,7 @@ TEST( CreateBoards, IntermidiateBoard )
   int height = 16;
   int numOfMine = 40;
 
-  const minesweeper::ms_game game( width, height, numOfMine );
+  const minesweeperGame::ms_game game( width, height, numOfMine );
 
   SUCCEED();
 }
@@ -30,7 +30,7 @@ TEST( CreateBoards, ExpertBoard )
   int numOfMine = 99;
   int boardSize = width * height;
 
-  const minesweeper::ms_game game( width, height, numOfMine );
+  const minesweeperGame::ms_game game( width, height, numOfMine );
 
   SUCCEED();
 }
@@ -39,7 +39,7 @@ TEST( CreateBoards, UnsupportedPreFabBoard1 )
 {
   try
   {
-    const minesweeper::ms_game game( 0, 0, 0 );
+    const minesweeperGame::ms_game game( 0, 0, 0 );
     FAIL();
   }
   catch ( const std::invalid_argument& )
@@ -56,7 +56,7 @@ TEST( CreateBoards, UnsupportedPreFabBoard2 )
 {
   try
   {
-    const minesweeper::ms_game game( -1, 0, 99 );
+    const minesweeperGame::ms_game game( -1, 0, 99 );
     FAIL();
   }
   catch ( const std::invalid_argument& )
@@ -73,7 +73,7 @@ TEST( CreateBoards, UnsupportedPreFabBoard3 )
 {
   try
   {
-    const minesweeper::ms_game game( 9, 8, 10 );
+    const minesweeperGame::ms_game game( 9, 8, 10 );
     FAIL();
   }
   catch ( const std::invalid_argument& )
@@ -93,8 +93,8 @@ TEST( CreateBoards, CreateBoardUsingCustomBoardAndMines )
   int width = 2;
   int height = 2;
   int boardSize = width * height;
-  minesweeper::gameBoard expectedBoard;
-  minesweeper::mineField mines;
+  minesweeperGame::gameBoard expectedBoard;
+  minesweeperGame::mineField mines;
 
   // Create board
   expectedBoard.clear();
@@ -102,7 +102,7 @@ TEST( CreateBoards, CreateBoardUsingCustomBoardAndMines )
   {
     for ( int col = 1; col <= width; col++ )
     {
-      expectedBoard.insert( std::make_pair( std::make_pair( col, row ), minesweeper::cellStateEnum::unknown ) );
+      expectedBoard.insert( std::make_pair( std::make_pair( col, row ), minesweeperGame::cellStateEnum::unknown ) );
     }
   }
 
@@ -110,7 +110,7 @@ TEST( CreateBoards, CreateBoardUsingCustomBoardAndMines )
   mines.clear();
   mines.insert( std::make_pair( 2, 2 ) );
 
-  minesweeper::ms_game game( expectedBoard, mines );
+  minesweeperGame::ms_game game( expectedBoard, mines );
 
   // Check basics
   ASSERT_EQ( game.getBoard(), expectedBoard );
@@ -135,8 +135,8 @@ TEST( Interface, GetWidth )
   int numOfMine = 99;
   int boardSize = width * height;
 
-  const minesweeper::ms_game game( width, height, numOfMine );
-  minesweeper::gameBoard board = game.getBoard();
+  const minesweeperGame::ms_game game( width, height, numOfMine );
+  minesweeperGame::gameBoard board = game.getBoard();
 
   ASSERT_EQ( game.getWidth(), width );
 }
@@ -148,8 +148,8 @@ TEST( Interface, GetHeight )
   int numOfMine = 99;
   int boardSize = width * height;
 
-  const minesweeper::ms_game game( width, height, numOfMine );
-  minesweeper::gameBoard board = game.getBoard();
+  const minesweeperGame::ms_game game( width, height, numOfMine );
+  minesweeperGame::gameBoard board = game.getBoard();
 
   ASSERT_EQ( game.getHeight(), height );
 }
@@ -161,8 +161,8 @@ TEST( Interface, GetNumMines )
   int numOfMine = 99;
   int boardSize = width * height;
 
-  const minesweeper::ms_game game( width, height, numOfMine );
-  minesweeper::gameBoard board = game.getBoard();
+  const minesweeperGame::ms_game game( width, height, numOfMine );
+  minesweeperGame::gameBoard board = game.getBoard();
 
   ASSERT_EQ( game.getNumMines(), numOfMine );
 }
@@ -174,13 +174,13 @@ TEST( Interface, GetBoard )
   int numOfMine = 10;
   int boardSize = width * height;
 
-  const minesweeper::ms_game game( width, height, numOfMine );
-  minesweeper::gameBoard board = game.getBoard();
+  const minesweeperGame::ms_game game( width, height, numOfMine );
+  minesweeperGame::gameBoard board = game.getBoard();
 
   ASSERT_EQ( board.size(), boardSize );
   for ( auto iter = board.begin(); iter != board.end(); ++iter )
   {
-    ASSERT_EQ( iter->second, minesweeper::cellStateEnum::unknown );
+    ASSERT_EQ( iter->second, minesweeperGame::cellStateEnum::unknown );
   }
 }
 
@@ -191,7 +191,7 @@ TEST( Interface, ValidCoordinateTrue )
   int numOfMine = 10;
   int boardSize = width * height;
 
-  minesweeper::ms_game game( width, height, numOfMine );
+  minesweeperGame::ms_game game( width, height, numOfMine );
 
   ASSERT_TRUE( game.isValidCoordinate( std::make_pair( 1, 1 ) ) );
   ASSERT_TRUE( game.isValidCoordinate( std::make_pair( 9, 9 ) ) );
@@ -204,7 +204,7 @@ TEST( Interface, ValidCoordinateFalse )
   int numOfMine = 10;
   int boardSize = width * height;
 
-  minesweeper::ms_game game( width, height, numOfMine );
+  minesweeperGame::ms_game game( width, height, numOfMine );
 
   ASSERT_FALSE( game.isValidCoordinate( std::make_pair( -1, 0 ) ) );
   ASSERT_FALSE( game.isValidCoordinate( std::make_pair( 10, 9 ) ) );
@@ -217,7 +217,7 @@ TEST( Interface, isGameActiveTrue )
   int numOfMine = 10;
   int boardSize = width * height;
 
-  minesweeper::ms_game game( width, height, numOfMine );
+  minesweeperGame::ms_game game( width, height, numOfMine );
 
   ASSERT_TRUE( game.isGameActive() );
 }
@@ -229,8 +229,8 @@ TEST( Interface, isGameActiveFalse )
   int numOfMine = 10;
   int boardSize = width * height;
 
-  minesweeper::ms_game game( width, height, numOfMine );
-  minesweeper::gameBoard board = game.getBoard();
+  minesweeperGame::ms_game game( width, height, numOfMine );
+  minesweeperGame::gameBoard board = game.getBoard();
 
   // Click all the cells => Will click on a mine
   for ( auto iter = board.begin(); iter != board.end(); ++iter )
@@ -248,13 +248,13 @@ TEST( Interface, leftClick )
   int numOfMine = 10;
   int boardSize = width * height;
 
-  minesweeper::ms_game game( width, height, numOfMine );
-  minesweeper::gameBoard board = game.getBoard();
+  minesweeperGame::ms_game game( width, height, numOfMine );
+  minesweeperGame::gameBoard board = game.getBoard();
 
-  ASSERT_EQ( board[ std::make_pair( 1, 1 ) ], minesweeper::cellStateEnum::unknown );
+  ASSERT_EQ( board[ std::make_pair( 1, 1 ) ], minesweeperGame::cellStateEnum::unknown );
   game.leftClickCell( std::make_pair( 1, 1 ) );
   board = game.getBoard();
-  ASSERT_NE( board[ std::make_pair( 1, 1 ) ], minesweeper::cellStateEnum::unknown );
+  ASSERT_NE( board[ std::make_pair( 1, 1 ) ], minesweeperGame::cellStateEnum::unknown );
 }
 
 TEST( Interface, rightClick )
@@ -264,13 +264,13 @@ TEST( Interface, rightClick )
   int numOfMine = 10;
   int boardSize = width * height;
 
-  minesweeper::ms_game game( width, height, numOfMine );
-  minesweeper::gameBoard board = game.getBoard();
+  minesweeperGame::ms_game game( width, height, numOfMine );
+  minesweeperGame::gameBoard board = game.getBoard();
 
-  ASSERT_EQ( board[ std::make_pair( 1, 1 ) ], minesweeper::cellStateEnum::unknown );
+  ASSERT_EQ( board[ std::make_pair( 1, 1 ) ], minesweeperGame::cellStateEnum::unknown );
   game.rightClickCell( std::make_pair( 1, 1 ) );
   board = game.getBoard();
-  ASSERT_EQ( board[ std::make_pair( 1, 1 ) ], minesweeper::cellStateEnum::marked );
+  ASSERT_EQ( board[ std::make_pair( 1, 1 ) ], minesweeperGame::cellStateEnum::marked );
 }
 
 TEST( Interface, getNumberOfNeighborsBasedOnState_CornerAllMatch )
@@ -281,8 +281,8 @@ TEST( Interface, getNumberOfNeighborsBasedOnState_CornerAllMatch )
   int boardSize = width * height;
   int expected = 3;
 
-  minesweeper::ms_game game( width, height, numOfMine );
-  int actual = game.getNumberOfNeighborsBasedOnState( std::make_pair( 1, 1 ), minesweeper::cellStateEnum::unknown );
+  minesweeperGame::ms_game game( width, height, numOfMine );
+  int actual = game.getNumberOfNeighborsBasedOnState( std::make_pair( 1, 1 ), minesweeperGame::cellStateEnum::unknown );
 
   ASSERT_EQ( actual, expected );
 }
@@ -295,8 +295,8 @@ TEST( Interface, getNumberOfNeighborsBasedOnState_OpenAllMatch )
   int boardSize = width * height;
   int expected = 8;
 
-  minesweeper::ms_game game( width, height, numOfMine );
-  int actual = game.getNumberOfNeighborsBasedOnState( std::make_pair( 2, 2 ), minesweeper::cellStateEnum::unknown );
+  minesweeperGame::ms_game game( width, height, numOfMine );
+  int actual = game.getNumberOfNeighborsBasedOnState( std::make_pair( 2, 2 ), minesweeperGame::cellStateEnum::unknown );
 
   ASSERT_EQ( actual, expected );
 }
@@ -309,10 +309,10 @@ TEST( Interface, getNeighborCoordinatesBasedOnState )
   int width = 3;
   int height = 3;
   int boardSize = width * height;
-  minesweeper::gameBoard board;
-  minesweeper::mineField mines;
-  minesweeper::coordinate midCoord = std::make_pair( 2, 2 );
-  minesweeper::coordinate mineCoord = std::make_pair( 3, 3 );
+  minesweeperGame::gameBoard board;
+  minesweeperGame::mineField mines;
+  minesweeperGame::coordinate midCoord = std::make_pair( 2, 2 );
+  minesweeperGame::coordinate mineCoord = std::make_pair( 3, 3 );
 
   // Create board
   board.clear();
@@ -320,7 +320,7 @@ TEST( Interface, getNeighborCoordinatesBasedOnState )
   {
     for ( int col = 1; col <= width; col++ )
     {
-      board.insert( std::make_pair( std::make_pair( col, row ), minesweeper::cellStateEnum::unknown ) );
+      board.insert( std::make_pair( std::make_pair( col, row ), minesweeperGame::cellStateEnum::unknown ) );
     }
   }
 
@@ -328,12 +328,12 @@ TEST( Interface, getNeighborCoordinatesBasedOnState )
   mines.clear();
   mines.insert( mineCoord );
 
-  minesweeper::ms_game game( board, mines );
+  minesweeperGame::ms_game game( board, mines );
 
   game.leftClickCell( midCoord );
-  ASSERT_EQ( 8, game.getNeighborCoordinatesBasedOnState( midCoord, minesweeper::cellStateEnum::unknown ).size() );
+  ASSERT_EQ( 8, game.getNeighborCoordinatesBasedOnState( midCoord, minesweeperGame::cellStateEnum::unknown ).size() );
   game.rightClickCell( mineCoord );
-  ASSERT_EQ( 1, game.getNeighborCoordinatesBasedOnState( midCoord, minesweeper::cellStateEnum::marked ).size() );
+  ASSERT_EQ( 1, game.getNeighborCoordinatesBasedOnState( midCoord, minesweeperGame::cellStateEnum::marked ).size() );
 }
 
 TEST( Interface, getNeighborCoordinates )
@@ -344,11 +344,11 @@ TEST( Interface, getNeighborCoordinates )
   int width = 3;
   int height = 3;
   int boardSize = width * height;
-  minesweeper::gameBoard board;
-  minesweeper::mineField mines;
-  minesweeper::coordinate midCoord = std::make_pair( 2, 2 );
-  minesweeper::coordinate mineCoord = std::make_pair( 3, 3 );
-  minesweeper::setOfCoordinates expectedCoords;
+  minesweeperGame::gameBoard board;
+  minesweeperGame::mineField mines;
+  minesweeperGame::coordinate midCoord = std::make_pair( 2, 2 );
+  minesweeperGame::coordinate mineCoord = std::make_pair( 3, 3 );
+  minesweeperGame::setOfCoordinates expectedCoords;
 
   // Create board and generate expected coords
   board.clear();
@@ -356,7 +356,7 @@ TEST( Interface, getNeighborCoordinates )
   {
     for ( int col = 1; col <= width; col++ )
     {
-      board.insert( std::make_pair( std::make_pair( col, row ), minesweeper::cellStateEnum::unknown ) );
+      board.insert( std::make_pair( std::make_pair( col, row ), minesweeperGame::cellStateEnum::unknown ) );
       expectedCoords.insert( std::make_pair( col, row ) );
     }
   }
@@ -366,7 +366,7 @@ TEST( Interface, getNeighborCoordinates )
   mines.clear();
   mines.insert( mineCoord );
 
-  minesweeper::ms_game game( board, mines );
+  minesweeperGame::ms_game game( board, mines );
 
   ASSERT_EQ( game.getNeighborCoordinates( midCoord ), expectedCoords );
 }
@@ -379,11 +379,11 @@ TEST( Interface, isCellRevealedAndHasNeighboringMines )
   int width = 3;
   int height = 3;
   int boardSize = width * height;
-  minesweeper::gameBoard board;
-  minesweeper::mineField mines;
-  minesweeper::coordinate midCoord = std::make_pair( 2, 2 );
-  minesweeper::coordinate topLeftCoord = std::make_pair( 1, 1 );
-  minesweeper::coordinate mineCoord = std::make_pair( 3, 3 );
+  minesweeperGame::gameBoard board;
+  minesweeperGame::mineField mines;
+  minesweeperGame::coordinate midCoord = std::make_pair( 2, 2 );
+  minesweeperGame::coordinate topLeftCoord = std::make_pair( 1, 1 );
+  minesweeperGame::coordinate mineCoord = std::make_pair( 3, 3 );
 
   // Create board and generate expected coords
   board.clear();
@@ -391,7 +391,7 @@ TEST( Interface, isCellRevealedAndHasNeighboringMines )
   {
     for ( int col = 1; col <= width; col++ )
     {
-      board.insert( std::make_pair( std::make_pair( col, row ), minesweeper::cellStateEnum::unknown ) );
+      board.insert( std::make_pair( std::make_pair( col, row ), minesweeperGame::cellStateEnum::unknown ) );
     }
   }
 
@@ -399,7 +399,7 @@ TEST( Interface, isCellRevealedAndHasNeighboringMines )
   mines.clear();
   mines.insert( mineCoord );
 
-  minesweeper::ms_game game( board, mines );
+  minesweeperGame::ms_game game( board, mines );
 
   ASSERT_FALSE( game.isCellRevealedAndHasNeighboringMines( midCoord ) );
   ASSERT_FALSE( game.isCellRevealedAndHasNeighboringMines ( topLeftCoord ));
@@ -416,11 +416,11 @@ TEST( Interface, areTheNumberOfMarkedMinesEqualToCellValue )
   int width = 5;
   int height = 3;
   int boardSize = width * height;
-  minesweeper::gameBoard board;
-  minesweeper::mineField mines;
-  minesweeper::coordinate mineCoord1 = std::make_pair( 4, 1 );
-  minesweeper::coordinate mineCoord2 = std::make_pair( 3, 3 );
-  minesweeper::coordinate mineCoord3 = std::make_pair( 5, 3 );
+  minesweeperGame::gameBoard board;
+  minesweeperGame::mineField mines;
+  minesweeperGame::coordinate mineCoord1 = std::make_pair( 4, 1 );
+  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 3 );
+  minesweeperGame::coordinate mineCoord3 = std::make_pair( 5, 3 );
 
   // Create board and generate expected coords
   board.clear();
@@ -428,7 +428,7 @@ TEST( Interface, areTheNumberOfMarkedMinesEqualToCellValue )
   {
     for ( int col = 1; col <= width; col++ )
     {
-      board.insert( std::make_pair( std::make_pair( col, row ), minesweeper::cellStateEnum::unknown ) );
+      board.insert( std::make_pair( std::make_pair( col, row ), minesweeperGame::cellStateEnum::unknown ) );
     }
   }
 
@@ -438,7 +438,7 @@ TEST( Interface, areTheNumberOfMarkedMinesEqualToCellValue )
   mines.insert( mineCoord2 );
   mines.insert( mineCoord3 );
 
-  minesweeper::ms_game game( board, mines );
+  minesweeperGame::ms_game game( board, mines );
 
   ASSERT_FALSE( game.areTheNumberOfMarkedMinesEqualToCellValue( std::make_pair( 1, 1 ) ) );
   ASSERT_FALSE( game.areTheNumberOfMarkedMinesEqualToCellValue( std::make_pair( 4, 2 ) ) );

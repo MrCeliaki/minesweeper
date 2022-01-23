@@ -4,7 +4,7 @@
 #include <map>
 #include <set>
 
-namespace minesweeper
+namespace minesweeperGame
 {
   enum gameStateEnum
   {
@@ -71,6 +71,6 @@ namespace minesweeper
     bool isCellRevealedAndHasNeighboringMines( coordinate );
     bool areTheNumberOfMarkedMinesEqualToCellValue( coordinate );
   };
-}  // namespace grade_school
+}  // namespace minesweeperGame
 
 #endif // MINESWEEPER_GAME_H

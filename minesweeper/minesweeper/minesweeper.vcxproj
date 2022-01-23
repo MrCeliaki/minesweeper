@@ -153,9 +153,11 @@
   <ItemGroup>
     <ClCompile Include="minesweeper.cpp" />
     <ClCompile Include="minesweeperGame.cpp" />
+    <ClCompile Include="minesweeperSolver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="minesweeperGame.h" />
+    <ClInclude Include="minesweeperSolver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

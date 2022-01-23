@@ -6,7 +6,7 @@
 #include <time.h>
 #include <queue>
 
-namespace minesweeper
+namespace minesweeperGame
 {
   ms_game::ms_game()
   {
@@ -413,4 +413,4 @@ namespace minesweeper
     return getNeighborCoordinatesBasedOnState( inputCoordinate, inputCellState ).size();
   }
 
-}  // namespace minesweeper
+}  // namespace minesweeperGame

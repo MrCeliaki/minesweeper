@@ -34,62 +34,62 @@ private:
   std::vector <std::string> tokens;
 };
 
-void printCell( minesweeper::cellStateEnum state )
+void printCell( minesweeperGame::cellStateEnum state )
 {
   HANDLE hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
 
   char charToPrint = ' ';
   switch ( state )
   {
-  case minesweeper::cellStateEnum::mineWhite:
+  case minesweeperGame::cellStateEnum::mineWhite:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_WHITE );
     charToPrint = '*';
     break;
-  case minesweeper::cellStateEnum::mineRed:
+  case minesweeperGame::cellStateEnum::mineRed:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_RED );
     charToPrint = '*';
     break;
-  case minesweeper::cellStateEnum::marked:
+  case minesweeperGame::cellStateEnum::marked:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_YELLOW );
     charToPrint = 'F';
     break;
-  case minesweeper::cellStateEnum::unknown:
+  case minesweeperGame::cellStateEnum::unknown:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_WHITE );
     charToPrint = 254;
     break;
-  case minesweeper::cellStateEnum::empty:
+  case minesweeperGame::cellStateEnum::empty:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_WHITE );
     charToPrint = ' ';
     break;
-  case minesweeper::cellStateEnum::oneBlue:
+  case minesweeperGame::cellStateEnum::oneBlue:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_BLUE );
     charToPrint = '1';
     break;
-  case minesweeper::cellStateEnum::twoGreen:
+  case minesweeperGame::cellStateEnum::twoGreen:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_GREEN );
     charToPrint = '2';
     break;
-  case minesweeper::cellStateEnum::threeRed:
+  case minesweeperGame::cellStateEnum::threeRed:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_RED );
     charToPrint = '3';
     break;
-  case minesweeper::cellStateEnum::fourDarkBlue:
+  case minesweeperGame::cellStateEnum::fourDarkBlue:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BLUE );
     charToPrint = '4';
     break;
-  case minesweeper::cellStateEnum::fiveBrown:
+  case minesweeperGame::cellStateEnum::fiveBrown:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BROWN );
     charToPrint = '5';
     break;
-  case minesweeper::cellStateEnum::sixTeal:
+  case minesweeperGame::cellStateEnum::sixTeal:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_TEAL );
     charToPrint = '6';
     break;
-  case minesweeper::cellStateEnum::sevenBlack:
+  case minesweeperGame::cellStateEnum::sevenBlack:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_GREY );
     charToPrint = '7';
     break;
-  case minesweeper::cellStateEnum::eightGrey:
+  case minesweeperGame::cellStateEnum::eightGrey:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_LIGHT_GREY );
     charToPrint = '8';
     break;
@@ -102,9 +102,9 @@ void printCell( minesweeper::cellStateEnum state )
   SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_WHITE );
 }
 
-void displayBoard( minesweeper::ms_game game )
+void displayBoard( minesweeperGame::ms_game game )
 {
-  minesweeper::gameBoard board = game.getBoard();
+  minesweeperGame::gameBoard board = game.getBoard();
 
   // Print col number above the board
   std::cout << "   ";
@@ -226,7 +226,7 @@ int main( int argc, char **argv )
     return 0;
   }
 
-  minesweeper::ms_game game( width, height, numOfMine );
+  minesweeperGame::ms_game game( width, height, numOfMine );
 
   HANDLE hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
   SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_WHITE );
