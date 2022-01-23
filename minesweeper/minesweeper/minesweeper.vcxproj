@@ -156,6 +156,7 @@
     <ClCompile Include="minesweeperSolver.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="minesweeper.h" />
     <ClInclude Include="minesweeperGame.h" />
     <ClInclude Include="minesweeperSolver.h" />
   </ItemGroup>

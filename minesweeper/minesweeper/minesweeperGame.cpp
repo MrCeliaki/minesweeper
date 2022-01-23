@@ -374,7 +374,7 @@ namespace minesweeperGame
 
     int numberOfMarkedNeighbors = getNumberOfNeighborsBasedOnState( inputCoordinate, cellStateEnum::marked );
 
-    if ( ( numberOfMarkedNeighbors == 1 && board[ inputCoordinate ] == cellStateEnum::oneBlue) ||
+    if ( ( numberOfMarkedNeighbors == 1 && board[ inputCoordinate ] == cellStateEnum::oneBlue ) ||
       ( numberOfMarkedNeighbors == 2 && board[ inputCoordinate ] == cellStateEnum::twoGreen ) ||
       ( numberOfMarkedNeighbors == 3 && board[ inputCoordinate ] == cellStateEnum::threeRed ) ||
       ( numberOfMarkedNeighbors == 4 && board[ inputCoordinate ] == cellStateEnum::fourDarkBlue ) ||
@@ -420,7 +420,7 @@ namespace minesweeperGame
     {
       if ( iter->second == inputCellState )
       {
-        stateCoordinates.insert( iter->first);
+        stateCoordinates.insert( iter->first );
       }
     }
 

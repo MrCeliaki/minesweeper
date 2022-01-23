@@ -2,19 +2,10 @@
 #include <vector>
 #include <algorithm>
 #include "minesweeperGame.h"
+#include "minesweeper.h"
 #include <string>
 #include <Windows.h>
 
-#define CONSOLE_COLOR_BRIGHT_GREEN 10
-#define CONSOLE_COLOR_BRIGHT_WHITE 15
-#define CONSOLE_COLOR_BRIGHT_YELLOW 14
-#define CONSOLE_COLOR_BRIGHT_BLUE 9
-#define CONSOLE_COLOR_BRIGHT_RED 12
-#define CONSOLE_COLOR_GREY 8
-#define CONSOLE_COLOR_BLUE 1
-#define CONSOLE_COLOR_BROWN 4
-#define CONSOLE_COLOR_TEAL 3
-#define CONSOLE_COLOR_LIGHT_GREY 7
 
 // https://stackoverflow.com/questions/865668/parsing-command-line-arguments-in-c
 class InputParser
