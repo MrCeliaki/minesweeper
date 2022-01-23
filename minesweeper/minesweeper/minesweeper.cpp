@@ -34,7 +34,7 @@ private:
   std::vector <std::string> tokens;
 };
 
-void printChar( minesweeper::cellStateEnum state )
+void printCell( minesweeper::cellStateEnum state )
 {
   HANDLE hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
 
@@ -106,6 +106,7 @@ void displayBoard( minesweeper::ms_game game )
 {
   minesweeper::gameBoard board = game.getBoard();
 
+  // Print col number above the board
   std::cout << "   ";
   for ( int col = 1; col <= game.getWidth(); col++ )
   {
@@ -120,6 +121,8 @@ void displayBoard( minesweeper::ms_game game )
   }
   std::cout << std::endl;
 
+  // Print row number on each side of the board
+  // Print the board
   for ( int row = 1; row <= game.getHeight(); row++ )
   {
     if ( row < 10 )
@@ -137,11 +140,12 @@ void displayBoard( minesweeper::ms_game game )
       {
         std::cout << "  ";
       }
-      printChar( board[ std::make_pair( col, row ) ] );
+      printCell( board[ std::make_pair( col, row ) ] );
     }
     std::cout << "  " << row << std::endl;
   }
 
+  // Print col number below the board
   std::cout << "   ";
   for ( int col = 1; col <= game.getWidth(); col++ )
   {
@@ -173,7 +177,7 @@ int main( int argc, char **argv )
     return 0;
   }
 
-  // Board
+  // Board selection
   if ( input.cmdOptionExists( "-b" ) )
   {
     width = 9;
@@ -206,7 +210,7 @@ int main( int argc, char **argv )
 
   bool autoSolverActive = false;
 
-  // Manual or Auto-solver
+  // Manual or Auto-solver selection
   if ( input.cmdOptionExists( "-m" ) )
   {
     autoSolverActive = false;
@@ -225,7 +229,6 @@ int main( int argc, char **argv )
 
   HANDLE hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
   SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_WHITE );
-
   system( "cls" );
   displayBoard( game );
 
@@ -271,7 +274,7 @@ int main( int argc, char **argv )
     system( "cls" );
     displayBoard( game );
 
-    if ( !( game.isGameActive() ) )
+    if ( !game.isGameActive() )
     {
       keepPlaying = false;
     }
