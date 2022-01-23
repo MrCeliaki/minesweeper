@@ -413,4 +413,18 @@ namespace minesweeperGame
     return getNeighborCoordinatesBasedOnState( inputCoordinate, inputCellState ).size();
   }
 
+  setOfCoordinates ms_game::getCoordinatesBasedOnState( cellStateEnum inputCellState )
+  {
+    setOfCoordinates stateCoordinates;
+    for ( auto iter = board.begin(); iter != board.end(); ++iter )
+    {
+      if ( iter->second == inputCellState )
+      {
+        stateCoordinates.insert( iter->first);
+      }
+    }
+
+    return stateCoordinates;
+  }
+
 }  // namespace minesweeperGame

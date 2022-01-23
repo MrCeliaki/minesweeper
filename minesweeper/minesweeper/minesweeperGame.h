@@ -70,6 +70,7 @@ namespace minesweeperGame
     setOfCoordinates getNeighborCoordinates( const coordinate );
     bool isCellRevealedAndHasNeighboringMines( coordinate );
     bool areTheNumberOfMarkedMinesEqualToCellValue( coordinate );
+    setOfCoordinates getCoordinatesBasedOnState( cellStateEnum );
   };
 }  // namespace minesweeperGame
 

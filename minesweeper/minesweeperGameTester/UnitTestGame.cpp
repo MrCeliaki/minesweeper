@@ -402,7 +402,7 @@ TEST( Interface, isCellRevealedAndHasNeighboringMines )
   minesweeperGame::ms_game game( board, mines );
 
   ASSERT_FALSE( game.isCellRevealedAndHasNeighboringMines( midCoord ) );
-  ASSERT_FALSE( game.isCellRevealedAndHasNeighboringMines ( topLeftCoord ));
+  ASSERT_FALSE( game.isCellRevealedAndHasNeighboringMines( topLeftCoord ) );
   game.leftClickCell( topLeftCoord );
   ASSERT_TRUE( game.isCellRevealedAndHasNeighboringMines( midCoord ) );
   ASSERT_FALSE( game.isCellRevealedAndHasNeighboringMines( topLeftCoord ) );
@@ -459,4 +459,54 @@ TEST( Interface, areTheNumberOfMarkedMinesEqualToCellValue )
   ASSERT_FALSE( game.areTheNumberOfMarkedMinesEqualToCellValue( std::make_pair( 4, 2 ) ) );
   game.leftClickCell( std::make_pair( 4, 2 ) );
   ASSERT_TRUE( game.areTheNumberOfMarkedMinesEqualToCellValue( std::make_pair( 4, 2 ) ) );
+}
+
+TEST( Interface, getCoordinatesBasedOnState )
+{
+  //  _  _  1  *  1
+  //  _  1  2  3  2
+  //  _  1  *  2  *
+  int width = 5;
+  int height = 3;
+  int boardSize = width * height;
+  minesweeperGame::gameBoard board;
+  minesweeperGame::mineField mines;
+  minesweeperGame::coordinate mineCoord1 = std::make_pair( 4, 1 );
+  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 3 );
+  minesweeperGame::coordinate mineCoord3 = std::make_pair( 5, 3 );
+
+  // Create board and generate expected coords
+  board.clear();
+  for ( int row = 1; row <= height; row++ )
+  {
+    for ( int col = 1; col <= width; col++ )
+    {
+      board.insert( std::make_pair( std::make_pair( col, row ), minesweeperGame::cellStateEnum::unknown ) );
+    }
+  }
+
+  // Create mines
+  mines.clear();
+  mines.insert( mineCoord1 );
+  mines.insert( mineCoord2 );
+  mines.insert( mineCoord3 );
+
+  minesweeperGame::ms_game game( board, mines );
+
+  ASSERT_EQ( boardSize, game.getCoordinatesBasedOnState( minesweeperGame::cellStateEnum::unknown ).size() );
+  ASSERT_EQ( 0, game.getCoordinatesBasedOnState( minesweeperGame::cellStateEnum::empty ).size() );
+  game.leftClickCell( std::make_pair( 1, 1 ) );
+  ASSERT_EQ( 7, game.getCoordinatesBasedOnState( minesweeperGame::cellStateEnum::unknown ).size() );
+  ASSERT_EQ( 4, game.getCoordinatesBasedOnState( minesweeperGame::cellStateEnum::empty ).size() );
+  ASSERT_EQ( 3, game.getCoordinatesBasedOnState( minesweeperGame::cellStateEnum::oneBlue ).size() );
+  ASSERT_EQ( 1, game.getCoordinatesBasedOnState( minesweeperGame::cellStateEnum::twoGreen ).size() );
+  game.rightClickCell( mineCoord1 );
+  game.rightClickCell( mineCoord2 );
+  game.rightClickCell( mineCoord3 );
+  ASSERT_EQ( 3, game.getCoordinatesBasedOnState( minesweeperGame::cellStateEnum::marked ).size() );
+  ASSERT_EQ( mines, game.getCoordinatesBasedOnState( minesweeperGame::cellStateEnum::marked ) );
+  ASSERT_EQ( 1, game.getCoordinatesBasedOnState( minesweeperGame::cellStateEnum::twoGreen ).size() );
+  game.leftClickCell( std::make_pair( 5, 2 ) );
+  game.leftClickCell( std::make_pair( 4, 3 ) );
+  ASSERT_EQ( 3, game.getCoordinatesBasedOnState( minesweeperGame::cellStateEnum::twoGreen ).size() );
 }
