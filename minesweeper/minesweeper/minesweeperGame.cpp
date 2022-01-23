@@ -280,7 +280,10 @@ namespace minesweeperGame
   {
     for ( auto iter = mines.begin(); iter != mines.end(); ++iter )
     {
-      board[ *iter ] = cellStateEnum::mineWhite;
+      if ( board[ *iter ] != cellStateEnum::marked)
+      {
+        board[ *iter ] = cellStateEnum::mineWhite;
+      }
     }
   }
 
@@ -374,14 +377,22 @@ namespace minesweeperGame
 
     int numberOfMarkedNeighbors = getNumberOfNeighborsBasedOnState( inputCoordinate, cellStateEnum::marked );
 
-    if ( ( numberOfMarkedNeighbors == 1 && board[ inputCoordinate ] == cellStateEnum::oneBlue ) ||
-      ( numberOfMarkedNeighbors == 2 && board[ inputCoordinate ] == cellStateEnum::twoGreen ) ||
-      ( numberOfMarkedNeighbors == 3 && board[ inputCoordinate ] == cellStateEnum::threeRed ) ||
-      ( numberOfMarkedNeighbors == 4 && board[ inputCoordinate ] == cellStateEnum::fourDarkBlue ) ||
-      ( numberOfMarkedNeighbors == 5 && board[ inputCoordinate ] == cellStateEnum::fiveBrown ) ||
-      ( numberOfMarkedNeighbors == 6 && board[ inputCoordinate ] == cellStateEnum::sixTeal ) ||
-      ( numberOfMarkedNeighbors == 7 && board[ inputCoordinate ] == cellStateEnum::sevenBlack ) ||
-      ( numberOfMarkedNeighbors == 8 && board[ inputCoordinate ] == cellStateEnum::eightGrey ) )
+    if ( ( numberOfMarkedNeighbors == convertStateEnumToNumberOfMines( cellStateEnum::oneBlue )
+      && board[ inputCoordinate ] == cellStateEnum::oneBlue ) ||
+      ( numberOfMarkedNeighbors == convertStateEnumToNumberOfMines( cellStateEnum::twoGreen ) 
+        && board[ inputCoordinate ] == cellStateEnum::twoGreen ) ||
+      ( numberOfMarkedNeighbors == convertStateEnumToNumberOfMines( cellStateEnum::threeRed ) 
+        && board[ inputCoordinate ] == cellStateEnum::threeRed ) ||
+      ( numberOfMarkedNeighbors == convertStateEnumToNumberOfMines( cellStateEnum::fourDarkBlue ) 
+        && board[ inputCoordinate ] == cellStateEnum::fourDarkBlue ) ||
+      ( numberOfMarkedNeighbors == convertStateEnumToNumberOfMines( cellStateEnum::fiveBrown ) 
+        && board[ inputCoordinate ] == cellStateEnum::fiveBrown ) ||
+      ( numberOfMarkedNeighbors == convertStateEnumToNumberOfMines( cellStateEnum::sixTeal ) 
+        && board[ inputCoordinate ] == cellStateEnum::sixTeal ) ||
+      ( numberOfMarkedNeighbors == convertStateEnumToNumberOfMines( cellStateEnum::sevenBlack ) 
+        && board[ inputCoordinate ] == cellStateEnum::sevenBlack ) ||
+      ( numberOfMarkedNeighbors == convertStateEnumToNumberOfMines( cellStateEnum::eightGrey ) 
+        && board[ inputCoordinate ] == cellStateEnum::eightGrey ) )
     {
       return true;
     }
@@ -425,6 +436,48 @@ namespace minesweeperGame
     }
 
     return stateCoordinates;
+  }
+
+  int ms_game::convertStateEnumToNumberOfMines( cellStateEnum inputState )
+  {
+    int numberOfMines = 0;
+
+    switch ( inputState )
+    {
+      break;
+    case minesweeperGame::oneBlue:
+      numberOfMines = 1;
+      break;
+    case minesweeperGame::twoGreen:
+      numberOfMines = 2;
+      break;
+    case minesweeperGame::threeRed:
+      numberOfMines = 3;
+      break;
+    case minesweeperGame::fourDarkBlue:
+      numberOfMines = 4;
+      break;
+    case minesweeperGame::fiveBrown:
+      numberOfMines = 5;
+      break;
+    case minesweeperGame::sixTeal:
+      numberOfMines = 6;
+      break;
+    case minesweeperGame::sevenBlack:
+      numberOfMines = 7;
+      break;
+    case minesweeperGame::eightGrey:
+      numberOfMines = 8;
+      break;
+    case minesweeperGame::mineWhite:
+    case minesweeperGame::mineRed:
+    case minesweeperGame::marked:
+    case minesweeperGame::unknown:
+    case minesweeperGame::empty:
+    default:
+      break;
+    }
+    return numberOfMines;
   }
 
 }  // namespace minesweeperGame

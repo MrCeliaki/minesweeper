@@ -71,6 +71,7 @@ namespace minesweeperGame
     bool isCellRevealedAndHasNeighboringMines( coordinate );
     bool areTheNumberOfMarkedMinesEqualToCellValue( coordinate );
     setOfCoordinates getCoordinatesBasedOnState( cellStateEnum );
+    int convertStateEnumToNumberOfMines( cellStateEnum );
   };
 }  // namespace minesweeperGame
 

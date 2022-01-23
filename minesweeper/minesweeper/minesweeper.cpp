@@ -2,9 +2,11 @@
 #include <vector>
 #include <algorithm>
 #include "minesweeperGame.h"
+#include "minesweeperSolver.h"
 #include "minesweeper.h"
 #include <string>
 #include <Windows.h>
+#include <time.h>
 
 
 // https://stackoverflow.com/questions/865668/parsing-command-line-arguments-in-c
@@ -199,16 +201,14 @@ int main( int argc, char **argv )
     return 0;
   }
 
-  bool autoSolverActive = false;
-
   // Manual or Auto-solver selection
+  bool autoSolverActive = false;
   if ( input.cmdOptionExists( "-m" ) )
   {
     autoSolverActive = false;
   }
   else if ( input.cmdOptionExists( "-a" ) )
   {
-    throw std::exception( "Not Yet Implemented" );
     autoSolverActive = true;
   }
   else
@@ -225,15 +225,43 @@ int main( int argc, char **argv )
   displayBoard( game );
 
   bool keepPlaying = true;
+  srand( time( NULL ) );
   while ( keepPlaying )
   {
     std::string arg;
     int col;
     int row;
+    minesweeperSolver::clickSuggestions suggestions;
 
     if ( autoSolverActive )
     {
-      throw std::exception( "Not Yet Implemented" );
+      suggestions = minesweeperSolver::getRightClickSuggestions( game );
+
+      if ( suggestions.empty() )
+      {
+        suggestions = minesweeperSolver::getLeftClickSuggestions( game );
+      }
+      if ( suggestions.empty() )
+      {
+        suggestions = minesweeperSolver::getLeftClickGambleSuggestions( game );
+      }
+      if ( !suggestions.empty() )
+      {
+        auto iter = suggestions.begin();
+        int randValue = rand() % suggestions.size();
+        std::advance( iter , randValue );
+        
+        arg = iter->second;
+        col = iter->first.first;
+        row = iter->first.second;
+      }
+      else
+      {
+        arg = "q";
+        col = 0;
+        row = 0;
+      }
+
     }
     else
     {
