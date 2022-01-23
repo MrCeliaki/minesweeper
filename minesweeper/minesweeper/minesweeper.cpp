@@ -217,6 +217,7 @@ int main( int argc, char **argv )
   }
   else if ( input.cmdOptionExists( "-a" ) )
   {
+    throw std::exception( "Not Yet Implemented" );
     autoSolverActive = true;
   }
   else
@@ -241,7 +242,7 @@ int main( int argc, char **argv )
 
     if ( autoSolverActive )
     {
-
+      throw std::exception( "Not Yet Implemented" );
     }
     else
     {
