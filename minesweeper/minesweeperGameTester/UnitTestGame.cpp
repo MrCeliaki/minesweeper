@@ -111,8 +111,8 @@ TEST( Interface, ValidCoordinateTrue )
 
   minesweeper::ms_game game( width, height, numOfMine );
 
-  ASSERT_TRUE( game.isValidCoordinate( std::make_pair( 0, 0 ) ) );
-  ASSERT_TRUE( game.isValidCoordinate( std::make_pair( 8, 8 ) ) );
+  ASSERT_TRUE( game.isValidCoordinate( std::make_pair( 1, 1 ) ) );
+  ASSERT_TRUE( game.isValidCoordinate( std::make_pair( 9, 9 ) ) );
 }
 
 TEST( Interface, ValidCoordinateFalse )

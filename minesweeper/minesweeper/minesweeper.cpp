@@ -55,11 +55,11 @@ void printChar( minesweeper::cellStateEnum state )
     break;
   case minesweeper::cellStateEnum::unknown:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_WHITE );
-    charToPrint = '_';
+    charToPrint = 254;
     break;
   case minesweeper::cellStateEnum::empty:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_WHITE );
-    charToPrint = '.';
+    charToPrint = ' ';
     break;
   case minesweeper::cellStateEnum::oneBlue:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_BLUE );
@@ -109,37 +109,93 @@ void displayBoard( minesweeper::ms_game game )
 
   minesweeper::gameBoard board = game.getBoard();
 
-  for ( int col = 1; col <= game.getWidth(); col++ )
+  for ( int row = 1; row <= game.getHeight(); row++ )
   {
-    std::cout << col << " |";
-
-    for ( int row = 1; row <= game.getHeight(); row++ )
+    if ( row < 10 )
     {
-      if ( row != 1 )
+      std::cout << " " << row << "  ";
+    }
+    else
+    {
+      std::cout << row << "  ";
+    }
+
+    for ( int col = 1; col <= game.getWidth(); col++ )
+    {
+      if ( col != 1 )
       {
         std::cout << ' ';
       }
       printChar( board[ std::make_pair( col, row ) ] );
     }
-    std::cout << "| " << col << std::endl;
+    std::cout << "  " << row << std::endl;
   }
 
 }
 
 int main( int argc, char **argv )
 {
-  /*
+  int width = 0;
+  int height = 0;
+  int numOfMine = 0;
+
   InputParser input( argc, argv );
+
+  // Help
+  if ( input.cmdOptionExists( "-h" ) )
+  {
+    //TO DO: Print help text
+    throw std::exception( "Not Yet Implemented" );
+    return 0;
+  }
+
+  // Board
   if ( input.cmdOptionExists( "-b" ) )
   {
-    // Do stuff
+    width = 9;
+    height = 9;
+    numOfMine = 10;
   }
-  */
+  else if ( input.cmdOptionExists( "-i" ) )
+  {
+    width = 16;
+    height = 16;
+    numOfMine = 40;
+  }
+  else if ( input.cmdOptionExists( "-e" ) )
+  {
+    width = 30;
+    height = 16;
+    numOfMine = 99;
+  }
+  else if ( input.cmdOptionExists( "-t" ) )
+  {
+    width = 4;
+    height = 4;
+    numOfMine = 2;
+  }
+  else
+  {
+    std::cout << "Board argument missing." << std::endl;
+    return 0;
+  }
 
+  bool autoSolverActive = false;
 
-  int width = 4;
-  int height = 4;
-  int numOfMine = 2;
+  // Manual or Auto-solver
+  if ( input.cmdOptionExists( "-m" ) )
+  {
+    autoSolverActive = false;
+  }
+  else if ( input.cmdOptionExists( "-a" ) )
+  {
+    autoSolverActive = true;
+  }
+  else
+  {
+    std::cout << "Solver argument missing." << std::endl;
+    return 0;
+  }
 
   minesweeper::ms_game game( width, height, numOfMine );
 
@@ -153,7 +209,15 @@ int main( int argc, char **argv )
     int col;
     int row;
 
-    std::cin >> arg >> col >> row;
+    if ( autoSolverActive )
+    {
+
+    }
+    else
+    {
+      std::cout << std::endl;
+      std::cin >> arg >> col >> row;
+    }
     std::pair<int, int> coordinate = std::make_pair( col, row );
 
     switch ( arg[ 0 ] )
@@ -179,6 +243,12 @@ int main( int argc, char **argv )
 
     system( "cls" );
     displayBoard( game );
+
+    if ( !( game.isGameActive() ) )
+    {
+      keepPlaying = false;
+    }
+
   }
 
   return 0;
