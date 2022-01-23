@@ -4,7 +4,6 @@
 #include <map>
 #include <set>
 
-
 namespace minesweeper
 {
   enum gameStateEnum
@@ -44,36 +43,33 @@ namespace minesweeper
     mineField mines;
     gameStateEnum gameState;
     bool validBoard( uint8_t, uint8_t, uint16_t ) const;
-    int width;
-    int height;
-    int numMines;
     bool isGameBoardRevealed() const;
     void revealAllMines();
     void revealCell( coordinate );
     bool isMine( coordinate ) const;
     int getNumberOfNeighboringMines( const coordinate );
-    setOfCoordinates getNeighborCoordinates( const coordinate );
     void setGameLost( const coordinate );
     void setGameWon();
     void activeCell( coordinate );
-    bool isCellRevealedAndHasNeighboringMines( coordinate );
-    bool areTheNumberOfMarkedMinesEqualToCellValue( coordinate );
-    setOfCoordinates getNeighborCoordinatesBasedOnState( coordinate, cellStateEnum );
-    int getNumberOfNeighborsBasedOnState( coordinate, cellStateEnum );
+    void generateBoard( const uint8_t, const uint8_t );
+    void generateMines( const uint8_t, const uint8_t, const uint16_t );
 
   public:
     ms_game( uint8_t, uint8_t, uint16_t );
+    ms_game( gameBoard, mineField );
     int getWidth() const;
     int getHeight() const;
     int getNumMines() const;
     gameBoard getBoard() const;
     void leftClickCell( coordinate );
     void rightClickCell( coordinate );
-    void generateBoard( gameBoard&, const uint8_t, const uint8_t );
-    void generateMines( mineField&, const uint8_t, const uint8_t, const uint16_t );
     bool isValidCoordinate( coordinate ) const;
     bool isGameActive() const;
-
+    int getNumberOfNeighborsBasedOnState( coordinate, cellStateEnum );
+    setOfCoordinates getNeighborCoordinatesBasedOnState( coordinate, cellStateEnum );
+    setOfCoordinates getNeighborCoordinates( const coordinate );
+    bool isCellRevealedAndHasNeighboringMines( coordinate );
+    bool areTheNumberOfMarkedMinesEqualToCellValue( coordinate );
   };
 }  // namespace grade_school
 

@@ -12,15 +12,19 @@ namespace minesweeper
   {
   }
 
+  ms_game::ms_game( gameBoard inputBoard, mineField inputMines )
+  {
+    board = inputBoard;
+    mines = inputMines;
+    gameState = gameStateEnum::playing;
+  }
+
   ms_game::ms_game( uint8_t inputWidth, uint8_t inputHeight, uint16_t inputMines )
   {
     if ( validBoard( inputWidth, inputHeight, inputMines ) )
     {
-      width = inputWidth;
-      height = inputHeight;
-      numMines = inputMines;
-      generateBoard( board, width, height );
-      generateMines( mines, width, height, numMines );
+      generateBoard( inputWidth, inputHeight );
+      generateMines( inputWidth, inputHeight, inputMines );
       gameState = gameStateEnum::playing;
     }
     else
@@ -29,39 +33,39 @@ namespace minesweeper
     }
   }
 
-  void ms_game::generateBoard( gameBoard& inputBoard, const uint8_t inputWidth, const uint8_t inputHeight )
+  void ms_game::generateBoard( const uint8_t inputWidth, const uint8_t inputHeight )
   {
-    inputBoard.clear();
+    board.clear();
 
-    for ( int row = 1; row <= height; row++ )
+    for ( int row = 1; row <= inputHeight; row++ )
     {
-      for ( int col = 1; col <= width; col++ )
+      for ( int col = 1; col <= inputWidth; col++ )
       {
-        inputBoard.insert( std::make_pair( std::make_pair( col, row ), cellStateEnum::unknown ) );
+        board.insert( std::make_pair( std::make_pair( col, row ), cellStateEnum::unknown ) );
       }
     }
   }
 
-  void ms_game::generateMines( mineField& inputMineField, const uint8_t inputWidth, const uint8_t inputHeight, const uint16_t inputNumMines )
+  void ms_game::generateMines( const uint8_t inputWidth, const uint8_t inputHeight, const uint16_t inputNumMines )
   {
     if ( inputWidth * inputHeight < inputNumMines )
     {
       throw std::exception( "placeMines 1: Dead Programs Tell No Lies" );
     }
 
-    inputMineField.clear();
+    mines.clear();
     srand( time( NULL ) );
 
     for ( size_t i = 0; i < inputNumMines; i++ )
     {
       while ( true )
       {
-        int col = ( rand() % width ) + 1;
-        int row = ( rand() % height ) + 1;
+        int col = ( rand() % getWidth() ) + 1;
+        int row = ( rand() % getHeight() ) + 1;
 
-        if ( inputMineField.find( std::make_pair( col, row ) ) == inputMineField.end() )
+        if ( mines.find( std::make_pair( col, row ) ) == mines.end() )
         {
-          inputMineField.insert( std::make_pair( col, row ) );
+          mines.insert( std::make_pair( col, row ) );
           break;
         }
       }
@@ -268,8 +272,8 @@ namespace minesweeper
 
   bool ms_game::isValidCoordinate( coordinate inputCoordinate ) const
   {
-    return inputCoordinate.first >= 1 && inputCoordinate.first <= width &&
-      inputCoordinate.second >= 1 && inputCoordinate.second <= height;
+    return inputCoordinate.first >= 1 && inputCoordinate.first <= getWidth() &&
+      inputCoordinate.second >= 1 && inputCoordinate.second <= getHeight();
   }
 
   void ms_game::revealAllMines()
@@ -306,17 +310,17 @@ namespace minesweeper
 
   int ms_game::getWidth() const
   {
-    return width;
+    return ( board.rbegin() )->first.first;
   }
 
   int ms_game::getHeight() const
   {
-    return height;
+    return ( board.rbegin() )->first.second;
   }
 
   int ms_game::getNumMines() const
   {
-    return numMines;
+    return mines.size();
   }
 
   gameBoard ms_game::getBoard() const
