@@ -1,4 +1,4 @@
-#include "minesweeperSolver.h"
+#include "minesweeperAdvisor.h"
 
 
 namespace minesweeperSolver

@@ -21,7 +21,7 @@
     <ClCompile Include="minesweeperGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="minesweeperSolver.cpp">
+    <ClCompile Include="minesweeperAdvisor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,10 +29,10 @@
     <ClInclude Include="minesweeperGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="minesweeperSolver.h">
+    <ClInclude Include="minesweeper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="minesweeper.h">
+    <ClInclude Include="minesweeperAdvisor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

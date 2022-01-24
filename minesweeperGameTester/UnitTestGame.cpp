@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "../minesweeper/minesweeperGame.cpp"
-#include "../minesweeper/minesweeperSolver.cpp"
+#include "../minesweeper/minesweeperAdvisor.cpp"
 
 TEST( CreateBoards, BeginnerBoard )
 {

@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include "minesweeperGame.h"
-#include "minesweeperSolver.h"
+#include "minesweeperAdvisor.h"
 #include "minesweeper.h"
 #include <string>
 #include <Windows.h>

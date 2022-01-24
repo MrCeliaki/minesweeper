@@ -7,7 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "minesweeper", "minesweeper\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "minesweeperGameTester", "minesweeperGameTester\minesweeperGameTester.vcxproj", "{1F2952B2-AC8B-47D7-BE0C-FE0B452765FC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "minesweeperSolverTester", "minesweeperSolverTester\minesweeperSolverTester.vcxproj", "{D7A36CB5-6491-4222-A4FC-FA2391C2DE0F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "minesweeperAdvisorTester", "minesweeperAdvisorTester\minesweeperAdvisorTester.vcxproj", "{D7A36CB5-6491-4222-A4FC-FA2391C2DE0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
