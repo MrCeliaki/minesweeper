@@ -8,6 +8,9 @@
 #include <Windows.h>
 #include <time.h>
 
+// minesweeper.cpp/minesweeper.h -> "Prototype code" 
+// These files are intended to be discarded and replaced once
+// the GAME and the ADVISOR are completed.
 
 // https://stackoverflow.com/questions/865668/parsing-command-line-arguments-in-c
 class InputParser
