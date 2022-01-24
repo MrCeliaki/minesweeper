@@ -1,6 +1,10 @@
 #include "minesweeperAdvisor.h"
 
 
+// getRightClicksSuggestionsBasedOnState very similar to getLeftClicksSuggestionsBasedOnState.
+// getRightClickSuggestions very similar to getLeftClickSuggestions are similar. 
+// Investigte if these could be combined. 
+
 namespace minesweeperSolver
 {
   clickSuggestions getRightClicksSuggestionsBasedOnState( minesweeperGame::ms_game inputGame,

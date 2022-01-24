@@ -44,7 +44,7 @@ void printCell( minesweeperGame::cellStateEnum state )
     break;
   case minesweeperGame::cellStateEnum::marked:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_YELLOW );
-    charToPrint = 'F';
+    charToPrint = 'x';
     break;
   case minesweeperGame::cellStateEnum::unknown:
     SetConsoleTextAttribute( hConsole, CONSOLE_COLOR_BRIGHT_WHITE );
@@ -226,6 +226,7 @@ int main( int argc, char **argv )
 
   bool keepPlaying = true;
   srand( time( NULL ) );
+  int counter = 0;
   while ( keepPlaying )
   {
     std::string arg;
@@ -291,12 +292,17 @@ int main( int argc, char **argv )
       break;
     }
 
-    system( "cls" );
-    displayBoard( game );
+    if ( !autoSolverActive )
+    {
+      system( "cls" );
+      displayBoard( game );
+    }
 
     if ( !game.isGameActive() )
     {
       keepPlaying = false;
+      system( "cls" );
+      displayBoard( game );
     }
 
   }
