@@ -44,5 +44,7 @@ Example:
 </ul>
 
 ## Info
-
-- Visual Studio 2017
+<ul>
+  <li> Visual Studio 2017 </li>
+  <li> Google Test </li>
+</ul>
