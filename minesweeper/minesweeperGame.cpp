@@ -73,28 +73,34 @@ namespace minesweeperGame
   }
 
   void ms_game::leftClickCell( coordinate inputCoordinate )
-  {// Rework needed
+  {
     if ( ( gameState != gameStateEnum::playing ) ||
       ( !isValidCoordinate( inputCoordinate ) ) )
     {
       return;
     }
 
+    // Clicked mine
     if ( isMine( inputCoordinate ) )
     {
       setGameLost( inputCoordinate );
       return;
     }
+
+    // Clicked unknown
     else if ( board[ inputCoordinate ] == cellStateEnum::unknown )
     {
       activeCell( inputCoordinate );
     }
+
+    // Ignore
     else if ( ( board[ inputCoordinate ] == cellStateEnum::empty ) ||
       ( board[ inputCoordinate ] == cellStateEnum::marked ) )
     {
-      // Ignore
       return;
     }
+
+    // Multiclick
     else if ( isCellRevealedAndHasNeighboringMines( inputCoordinate ) &&
       areTheNumberOfMarkedMinesEqualToCellValue( inputCoordinate ) )
     {
@@ -103,10 +109,6 @@ namespace minesweeperGame
       {
         activeCell( *iter );
       }
-    }
-    else
-    {
-
     }
 
     if ( isGameBoardRevealed() )

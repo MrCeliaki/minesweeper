@@ -1,4 +1,5 @@
-#include <iostream>
+#include<iostream>
+#include<sstream>
 #include <vector>
 #include <algorithm>
 #include "minesweeperGame.h"
@@ -157,6 +158,14 @@ void displayBoard( minesweeperGame::ms_game game )
 
 }
 
+int str_to_int( const std::string &str )
+{
+  std::stringstream ss( str );
+  int num;
+  ss >> num;
+  return num;
+}
+
 int main( int argc, char **argv )
 {
   int width = 0;
@@ -232,9 +241,12 @@ int main( int argc, char **argv )
   int counter = 0;
   while ( keepPlaying )
   {
-    std::string arg;
-    int col;
-    int row;
+    std::string arg = "";
+    std::string colString = "";
+    std::string rowString = "";
+    int col = 0;
+    int row = 0;
+
     minesweeperSolver::clickSuggestions suggestions;
 
     if ( autoSolverActive )
@@ -253,8 +265,8 @@ int main( int argc, char **argv )
       {
         auto iter = suggestions.begin();
         int randValue = rand() % suggestions.size();
-        std::advance( iter , randValue );
-        
+        std::advance( iter, randValue );
+
         arg = iter->second;
         col = iter->first.first;
         row = iter->first.second;
@@ -270,7 +282,9 @@ int main( int argc, char **argv )
     else
     {
       std::cout << std::endl;
-      std::cin >> arg >> col >> row;
+      std::cin >> arg >> colString >> rowString;
+      col = str_to_int( colString );
+      row = str_to_int( rowString );
     }
     std::pair<int, int> clickCoordinate = std::make_pair( col, row );
 
