@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="minesweeper.cpp">
+    <ClCompile Include="minesweeperAdvisor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="minesweeper.h">
+    <ClInclude Include="minesweeperAdvisor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
