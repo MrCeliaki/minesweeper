@@ -12,7 +12,7 @@ namespace minesweeperSolver
   {// Rework needed - combine with Left version
     clickSuggestions suggestions;
 
-    minesweeperGame::setOfCoordinates stateCoordinates =
+    minesweeperGame::setOfBoardCoordinates stateCoordinates =
       inputGame.getCoordinatesBasedOnState( inputState );
 
     for ( const auto stateCoordinate : stateCoordinates )
@@ -32,7 +32,7 @@ namespace minesweeperSolver
           minesweeperGame::cellStateEnum::marked )
         == inputGame.convertStateEnumToNumberOfMines( inputState ) )
       {
-        minesweeperGame::setOfCoordinates coordinates =
+        minesweeperGame::setOfBoardCoordinates coordinates =
           inputGame.getNeighborCoordinatesBasedOnState( stateCoordinate,
             minesweeperGame::cellStateEnum::unknown );
 
@@ -99,7 +99,7 @@ namespace minesweeperSolver
   {// Rework needed - combine with Right version
     clickSuggestions suggestions;
 
-    minesweeperGame::setOfCoordinates stateCoordinates =
+    minesweeperGame::setOfBoardCoordinates stateCoordinates =
       inputGame.getCoordinatesBasedOnState( inputState );
 
     for ( const auto stateCoordinate : stateCoordinates )
@@ -117,7 +117,7 @@ namespace minesweeperSolver
           minesweeperGame::cellStateEnum::marked )
         == inputGame.convertStateEnumToNumberOfMines( inputState ) )
       {
-        minesweeperGame::setOfCoordinates coordinates =
+        minesweeperGame::setOfBoardCoordinates coordinates =
           inputGame.getNeighborCoordinatesBasedOnState( stateCoordinate,
             minesweeperGame::cellStateEnum::unknown );
 
@@ -183,7 +183,7 @@ namespace minesweeperSolver
   {// Rework needed - should also use risk analysis instead of "random"
     clickSuggestions suggestions;
 
-    minesweeperGame::setOfCoordinates coordinates =
+    minesweeperGame::setOfBoardCoordinates coordinates =
       inputGame.getCoordinatesBasedOnState( minesweeperGame::cellStateEnum::unknown );
 
     for ( const auto coordinate : coordinates )

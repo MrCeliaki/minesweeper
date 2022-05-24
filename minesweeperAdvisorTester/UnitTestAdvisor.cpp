@@ -56,8 +56,8 @@ TEST( Interface, getRightClickSuggestion_1 )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 3, 3 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 5, 3 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 5, 3 );
   minesweeperSolver::clickSuggestions expectedSuggestions;
 
   // Create board
@@ -100,8 +100,8 @@ TEST( Interface, getRightClickSuggestion_2 )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 3, 2 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 3, 2 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 3, 3 );
   minesweeperSolver::clickSuggestions expectedSuggestions;
 
   // Create board
@@ -144,9 +144,9 @@ TEST( Interface, getRightClicksSuggestionsBasedOnState_NoMarked_3 )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 1, 2 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 2 );
-  minesweeperGame::coordinate mineCoord3 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 1, 2 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 3, 2 );
+  minesweeperGame::boardCoordinate mineCoord3 = std::make_pair( 3, 3 );
   minesweeperSolver::clickSuggestions expectedSuggestions;
 
   // Create board
@@ -194,10 +194,10 @@ TEST( Interface, getRightClicksSuggestionsBasedOnState_NoMarked_4 )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 1, 2 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 2 );
-  minesweeperGame::coordinate mineCoord3 = std::make_pair( 3, 3 );
-  minesweeperGame::coordinate mineCoord4 = std::make_pair( 1, 3 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 1, 2 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 3, 2 );
+  minesweeperGame::boardCoordinate mineCoord3 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord4 = std::make_pair( 1, 3 );
   minesweeperSolver::clickSuggestions expectedSuggestions;
 
   // Create board
@@ -246,11 +246,11 @@ TEST( Interface, getRightClicksSuggestionsBasedOnState_NoMarked_5 )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 1, 2 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 2 );
-  minesweeperGame::coordinate mineCoord3 = std::make_pair( 3, 3 );
-  minesweeperGame::coordinate mineCoord4 = std::make_pair( 1, 3 );
-  minesweeperGame::coordinate mineCoord5 = std::make_pair( 2, 1 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 1, 2 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 3, 2 );
+  minesweeperGame::boardCoordinate mineCoord3 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord4 = std::make_pair( 1, 3 );
+  minesweeperGame::boardCoordinate mineCoord5 = std::make_pair( 2, 1 );
   minesweeperSolver::clickSuggestions expectedSuggestions;
 
   // Create board
@@ -303,12 +303,12 @@ TEST( Interface, getRightClicksSuggestionsBasedOnState_NoMarked_6 )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 1, 2 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 2 );
-  minesweeperGame::coordinate mineCoord3 = std::make_pair( 3, 3 );
-  minesweeperGame::coordinate mineCoord4 = std::make_pair( 1, 3 );
-  minesweeperGame::coordinate mineCoord5 = std::make_pair( 2, 1 );
-  minesweeperGame::coordinate mineCoord6 = std::make_pair( 1, 1 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 1, 2 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 3, 2 );
+  minesweeperGame::boardCoordinate mineCoord3 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord4 = std::make_pair( 1, 3 );
+  minesweeperGame::boardCoordinate mineCoord5 = std::make_pair( 2, 1 );
+  minesweeperGame::boardCoordinate mineCoord6 = std::make_pair( 1, 1 );
   minesweeperSolver::clickSuggestions expectedSuggestions;
 
   // Create board
@@ -362,13 +362,13 @@ TEST( Interface, getRightClicksSuggestionsBasedOnState_NoMarked_7 )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 1, 2 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 2 );
-  minesweeperGame::coordinate mineCoord3 = std::make_pair( 3, 3 );
-  minesweeperGame::coordinate mineCoord4 = std::make_pair( 1, 3 );
-  minesweeperGame::coordinate mineCoord5 = std::make_pair( 2, 1 );
-  minesweeperGame::coordinate mineCoord6 = std::make_pair( 1, 1 );
-  minesweeperGame::coordinate mineCoord7 = std::make_pair( 2, 3 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 1, 2 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 3, 2 );
+  minesweeperGame::boardCoordinate mineCoord3 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord4 = std::make_pair( 1, 3 );
+  minesweeperGame::boardCoordinate mineCoord5 = std::make_pair( 2, 1 );
+  minesweeperGame::boardCoordinate mineCoord6 = std::make_pair( 1, 1 );
+  minesweeperGame::boardCoordinate mineCoord7 = std::make_pair( 2, 3 );
   minesweeperSolver::clickSuggestions expectedSuggestions;
 
   // Create board
@@ -423,14 +423,14 @@ TEST( Interface, getRightClicksSuggestionsBasedOnState_NoMarked_8 )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 1, 2 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 2 );
-  minesweeperGame::coordinate mineCoord3 = std::make_pair( 3, 3 );
-  minesweeperGame::coordinate mineCoord4 = std::make_pair( 1, 3 );
-  minesweeperGame::coordinate mineCoord5 = std::make_pair( 2, 1 );
-  minesweeperGame::coordinate mineCoord6 = std::make_pair( 1, 1 );
-  minesweeperGame::coordinate mineCoord7 = std::make_pair( 2, 3 );
-  minesweeperGame::coordinate mineCoord8 = std::make_pair( 3, 1 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 1, 2 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 3, 2 );
+  minesweeperGame::boardCoordinate mineCoord3 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord4 = std::make_pair( 1, 3 );
+  minesweeperGame::boardCoordinate mineCoord5 = std::make_pair( 2, 1 );
+  minesweeperGame::boardCoordinate mineCoord6 = std::make_pair( 1, 1 );
+  minesweeperGame::boardCoordinate mineCoord7 = std::make_pair( 2, 3 );
+  minesweeperGame::boardCoordinate mineCoord8 = std::make_pair( 3, 1 );
   minesweeperSolver::clickSuggestions expectedSuggestions;
 
   // Create board
@@ -484,14 +484,14 @@ TEST( Interface, getRightClicksSuggestionsBasedOnState_Marked )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 1, 2 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 2 );
-  minesweeperGame::coordinate mineCoord3 = std::make_pair( 3, 3 );
-  minesweeperGame::coordinate mineCoord4 = std::make_pair( 1, 3 );
-  minesweeperGame::coordinate mineCoord5 = std::make_pair( 2, 1 );
-  minesweeperGame::coordinate mineCoord6 = std::make_pair( 1, 1 );
-  minesweeperGame::coordinate mineCoord7 = std::make_pair( 2, 3 );
-  minesweeperGame::coordinate mineCoord8 = std::make_pair( 3, 1 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 1, 2 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 3, 2 );
+  minesweeperGame::boardCoordinate mineCoord3 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord4 = std::make_pair( 1, 3 );
+  minesweeperGame::boardCoordinate mineCoord5 = std::make_pair( 2, 1 );
+  minesweeperGame::boardCoordinate mineCoord6 = std::make_pair( 1, 1 );
+  minesweeperGame::boardCoordinate mineCoord7 = std::make_pair( 2, 3 );
+  minesweeperGame::boardCoordinate mineCoord8 = std::make_pair( 3, 1 );
   minesweeperSolver::clickSuggestions expectedSuggestions;
 
   // Create board
@@ -573,9 +573,9 @@ TEST( Interface, getLeftClickSuggestion_1 )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 4, 1 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 3 );
-  minesweeperGame::coordinate mineCoord3 = std::make_pair( 5, 3 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 4, 1 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord3 = std::make_pair( 5, 3 );
   minesweeperSolver::clickSuggestions expectedSuggestions;
 
   // Create board
@@ -616,9 +616,9 @@ TEST( Interface, getLeftClicksSuggestionsBasedOnState_1 )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 4, 1 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 3 );
-  minesweeperGame::coordinate mineCoord3 = std::make_pair( 5, 3 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 4, 1 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord3 = std::make_pair( 5, 3 );
   minesweeperSolver::clickSuggestions expectedSuggestions;
 
   // Create board
@@ -660,9 +660,9 @@ TEST( Interface, getLeftClicksSuggestionsBasedOnState_2 )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 4, 1 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 3 );
-  minesweeperGame::coordinate mineCoord3 = std::make_pair( 5, 3 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 4, 1 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord3 = std::make_pair( 5, 3 );
   minesweeperSolver::clickSuggestions expectedSuggestions;
 
   // Create board
@@ -704,9 +704,9 @@ TEST( Interface, getLeftClicksSuggestionsBasedOnState_3 )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 4, 1 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 3 );
-  minesweeperGame::coordinate mineCoord3 = std::make_pair( 5, 3 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 4, 1 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord3 = std::make_pair( 5, 3 );
   minesweeperSolver::clickSuggestions expectedSuggestions;
 
   // Create board
@@ -754,8 +754,8 @@ TEST( Interface, getLeftClickGambleSuggestions )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 3, 1 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 3, 1 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 3, 3 );
   minesweeperSolver::clickSuggestions expectedSuggestions;
   minesweeperSolver::clickSuggestions expectedSuggestionsAll;
 

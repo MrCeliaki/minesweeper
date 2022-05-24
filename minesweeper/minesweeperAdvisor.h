@@ -7,7 +7,7 @@
 
 namespace minesweeperSolver
 {
-  typedef std::map<std::pair<int, int>, char> clickSuggestions;
+  using clickSuggestions = std::map<std::pair<int, int>, char>;
 
   clickSuggestions getRightClicksSuggestionsBasedOnState( minesweeperGame::ms_game, minesweeperGame::cellStateEnum );
   clickSuggestions getRightClickSuggestions( minesweeperGame::ms_game );

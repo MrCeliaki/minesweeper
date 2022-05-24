@@ -30,10 +30,10 @@ namespace minesweeperGame
     eightGrey
   };
 
-  typedef std::map<std::pair<int, int>, cellStateEnum> gameBoard;
-  typedef std::set<std::pair<int, int>> mineField;
-  typedef std::set<std::pair<int, int>> setOfCoordinates;
-  typedef std::pair<int, int> coordinate;
+  using gameBoard = std::map<std::pair<int, int>, cellStateEnum>;
+  using mineField = std::set<std::pair<int, int>>;
+  using setOfBoardCoordinates = std::set<std::pair<int, int>>;
+  using boardCoordinate = std::pair<int, int> ;
 
   class ms_game
   {
@@ -45,12 +45,12 @@ namespace minesweeperGame
     bool validBoard( uint8_t, uint8_t, uint16_t ) const;
     bool isGameBoardRevealed() const;
     void revealAllMines();
-    void revealCell( coordinate );
-    bool isMine( coordinate ) const;
-    int getNumberOfNeighboringMines( const coordinate );
-    void setGameLost( const coordinate );
+    void revealCell( boardCoordinate );
+    bool isMine( boardCoordinate ) const;
+    int getNumberOfNeighboringMines( const boardCoordinate );
+    void setGameLost( const boardCoordinate );
     void setGameWon();
-    void activeCell( coordinate );
+    void activeCell( boardCoordinate );
     void generateBoard( const uint8_t, const uint8_t );
     void generateMines( const uint8_t, const uint8_t, const uint16_t );
 
@@ -61,16 +61,16 @@ namespace minesweeperGame
     int getHeight() const;
     int getNumMines() const;
     gameBoard getBoard() const;
-    void leftClickCell( coordinate );
-    void rightClickCell( coordinate );
-    bool isValidCoordinate( coordinate ) const;
+    void leftClickCell( boardCoordinate );
+    void rightClickCell( boardCoordinate );
+    bool isValidCoordinate( boardCoordinate ) const;
     bool isGameActive() const;
-    int getNumberOfNeighborsBasedOnState( coordinate, cellStateEnum );
-    setOfCoordinates getNeighborCoordinatesBasedOnState( coordinate, cellStateEnum );
-    setOfCoordinates getNeighborCoordinates( const coordinate );
-    bool isCellRevealedAndHasNeighboringMines( coordinate );
-    bool areTheNumberOfMarkedMinesEqualToCellValue( coordinate );
-    setOfCoordinates getCoordinatesBasedOnState( cellStateEnum );
+    int getNumberOfNeighborsBasedOnState( boardCoordinate, cellStateEnum );
+    setOfBoardCoordinates getNeighborCoordinatesBasedOnState( boardCoordinate, cellStateEnum );
+    setOfBoardCoordinates getNeighborCoordinates( const boardCoordinate );
+    bool isCellRevealedAndHasNeighboringMines( boardCoordinate );
+    bool areTheNumberOfMarkedMinesEqualToCellValue( boardCoordinate );
+    setOfBoardCoordinates getCoordinatesBasedOnState( cellStateEnum );
     int convertStateEnumToNumberOfMines( cellStateEnum );
   };
 }  // namespace minesweeperGame

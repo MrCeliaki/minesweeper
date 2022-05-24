@@ -312,8 +312,8 @@ TEST( Interface, getNeighborCoordinatesBasedOnState )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate midCoord = std::make_pair( 2, 2 );
-  minesweeperGame::coordinate mineCoord = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate midCoord = std::make_pair( 2, 2 );
+  minesweeperGame::boardCoordinate mineCoord = std::make_pair( 3, 3 );
 
   // Create board
   board.clear();
@@ -347,9 +347,9 @@ TEST( Interface, getNeighborCoordinates )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate midCoord = std::make_pair( 2, 2 );
-  minesweeperGame::coordinate mineCoord = std::make_pair( 3, 3 );
-  minesweeperGame::setOfCoordinates expectedCoords;
+  minesweeperGame::boardCoordinate midCoord = std::make_pair( 2, 2 );
+  minesweeperGame::boardCoordinate mineCoord = std::make_pair( 3, 3 );
+  minesweeperGame::setOfBoardCoordinates expectedCoords;
 
   // Create board and generate expected coords
   board.clear();
@@ -382,9 +382,9 @@ TEST( Interface, isCellRevealedAndHasNeighboringMines )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate midCoord = std::make_pair( 2, 2 );
-  minesweeperGame::coordinate topLeftCoord = std::make_pair( 1, 1 );
-  minesweeperGame::coordinate mineCoord = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate midCoord = std::make_pair( 2, 2 );
+  minesweeperGame::boardCoordinate topLeftCoord = std::make_pair( 1, 1 );
+  minesweeperGame::boardCoordinate mineCoord = std::make_pair( 3, 3 );
 
   // Create board and generate expected coords
   board.clear();
@@ -419,9 +419,9 @@ TEST( Interface, areTheNumberOfMarkedMinesEqualToCellValue )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 4, 1 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 3 );
-  minesweeperGame::coordinate mineCoord3 = std::make_pair( 5, 3 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 4, 1 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord3 = std::make_pair( 5, 3 );
 
   // Create board and generate expected coords
   board.clear();
@@ -472,9 +472,9 @@ TEST( Interface, getCoordinatesBasedOnState )
   int boardSize = width * height;
   minesweeperGame::gameBoard board;
   minesweeperGame::mineField mines;
-  minesweeperGame::coordinate mineCoord1 = std::make_pair( 4, 1 );
-  minesweeperGame::coordinate mineCoord2 = std::make_pair( 3, 3 );
-  minesweeperGame::coordinate mineCoord3 = std::make_pair( 5, 3 );
+  minesweeperGame::boardCoordinate mineCoord1 = std::make_pair( 4, 1 );
+  minesweeperGame::boardCoordinate mineCoord2 = std::make_pair( 3, 3 );
+  minesweeperGame::boardCoordinate mineCoord3 = std::make_pair( 5, 3 );
 
   // Create board and generate expected coords
   board.clear();
