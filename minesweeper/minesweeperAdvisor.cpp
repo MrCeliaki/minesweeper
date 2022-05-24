@@ -15,31 +15,30 @@ namespace minesweeperSolver
     minesweeperGame::setOfCoordinates stateCoordinates =
       inputGame.getCoordinatesBasedOnState( inputState );
 
-    for ( auto iter = stateCoordinates.begin(); iter != stateCoordinates.end(); ++iter )
+    for ( const auto stateCoordinate : stateCoordinates )
     {
       if (
         // Cell revealed
-        inputGame.isCellRevealedAndHasNeighboringMines( *iter ) &&
+        inputGame.isCellRevealedAndHasNeighboringMines( stateCoordinate ) &&
 
         // Cell has unknown neighbors
-        inputGame.getNumberOfNeighborsBasedOnState( *iter,
+        inputGame.getNumberOfNeighborsBasedOnState( stateCoordinate,
           minesweeperGame::cellStateEnum::unknown ) > 0 &&
 
         // The number of unknowns + marked equal the number of neighboring mines
-        inputGame.getNumberOfNeighborsBasedOnState( *iter,
+        inputGame.getNumberOfNeighborsBasedOnState( stateCoordinate,
           minesweeperGame::cellStateEnum::unknown ) +
-        inputGame.getNumberOfNeighborsBasedOnState( *iter,
+        inputGame.getNumberOfNeighborsBasedOnState( stateCoordinate,
           minesweeperGame::cellStateEnum::marked )
         == inputGame.convertStateEnumToNumberOfMines( inputState ) )
       {
         minesweeperGame::setOfCoordinates coordinates =
-          inputGame.getNeighborCoordinatesBasedOnState( *iter,
+          inputGame.getNeighborCoordinatesBasedOnState( stateCoordinate,
             minesweeperGame::cellStateEnum::unknown );
 
-        for ( auto neighborIter = coordinates.begin();
-          neighborIter != coordinates.end(); ++neighborIter )
+        for ( const auto neighborCoordinate : coordinates )
         {
-          suggestions.insert( std::make_pair( *neighborIter, 'r' ) ); // To do: Remove magic numbers
+          suggestions.insert( std::make_pair( neighborCoordinate, 'r' ) ); // To do: Remove magic numbers
         }
       }
     }
@@ -103,28 +102,28 @@ namespace minesweeperSolver
     minesweeperGame::setOfCoordinates stateCoordinates =
       inputGame.getCoordinatesBasedOnState( inputState );
 
-    for ( auto iter = stateCoordinates.begin(); iter != stateCoordinates.end(); ++iter )
+    for ( const auto stateCoordinate : stateCoordinates )
     {
       if (
         // Cell revealed
-        inputGame.isCellRevealedAndHasNeighboringMines( *iter ) &&
+        inputGame.isCellRevealedAndHasNeighboringMines( stateCoordinate ) &&
 
         // Cell has one or more unknown neighbors
-        inputGame.getNumberOfNeighborsBasedOnState( *iter,
+        inputGame.getNumberOfNeighborsBasedOnState( stateCoordinate,
           minesweeperGame::cellStateEnum::unknown ) > 0 &&
 
         // The number of cell neighboring equals to marked neighboring mines
-        inputGame.getNumberOfNeighborsBasedOnState( *iter,
+        inputGame.getNumberOfNeighborsBasedOnState( stateCoordinate,
           minesweeperGame::cellStateEnum::marked )
         == inputGame.convertStateEnumToNumberOfMines( inputState ) )
       {
         minesweeperGame::setOfCoordinates coordinates =
-          inputGame.getNeighborCoordinatesBasedOnState( *iter,
+          inputGame.getNeighborCoordinatesBasedOnState( stateCoordinate,
             minesweeperGame::cellStateEnum::unknown );
 
-        for ( auto neighborIter = coordinates.begin(); neighborIter != coordinates.end(); ++neighborIter )
+        for ( const auto neighborCoordinate : coordinates )
         {
-          suggestions.insert( std::make_pair( *neighborIter, 'l' ) ); // To do: Remove magic numbers
+          suggestions.insert( std::make_pair( neighborCoordinate, 'l' ) ); // To do: Remove magic numbers
         }
       }
     }
@@ -187,9 +186,9 @@ namespace minesweeperSolver
     minesweeperGame::setOfCoordinates coordinates =
       inputGame.getCoordinatesBasedOnState( minesweeperGame::cellStateEnum::unknown );
 
-    for ( auto iter = coordinates.begin(); iter != coordinates.end(); ++iter )
+    for ( const auto coordinate : coordinates )
     {
-      suggestions.insert( std::make_pair( *iter, 'l' ) ); // To do: Remove magic numbers
+      suggestions.insert( std::make_pair( coordinate, 'l' ) ); // To do: Remove magic numbers
     }
 
     return suggestions;

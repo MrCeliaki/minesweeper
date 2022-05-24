@@ -105,9 +105,10 @@ namespace minesweeperGame
       areTheNumberOfMarkedMinesEqualToCellValue( inputCoordinate ) )
     {
       setOfCoordinates unknownNeighborsCoordinates = getNeighborCoordinatesBasedOnState( inputCoordinate, cellStateEnum::unknown );
-      for ( auto iter = unknownNeighborsCoordinates.begin(); iter != unknownNeighborsCoordinates.end(); ++iter )
+
+      for ( const auto coordinate : unknownNeighborsCoordinates )
       {
-        activeCell( *iter );
+        activeCell( coordinate );
       }
     }
 
@@ -161,12 +162,12 @@ namespace minesweeperGame
       {
         setOfCoordinates neighbors = getNeighborCoordinates( jobQueue.front() );
 
-        for ( auto iter = neighbors.begin(); iter != neighbors.end(); ++iter )
+        for ( const auto coordinate : neighbors )
         {
-          if ( coordinateHistory.find( *iter ) == coordinateHistory.end() )
+          if ( coordinateHistory.find( coordinate ) == coordinateHistory.end() )
           {
-            coordinateHistory.insert( *iter );
-            jobQueue.push( *iter );
+            coordinateHistory.insert( coordinate );
+            jobQueue.push( coordinate );
           }
         }
       }
@@ -256,9 +257,9 @@ namespace minesweeperGame
     setOfCoordinates neighbors = getNeighborCoordinates( inputCoordinate );
 
     int neighbouringMines = 0;
-    for ( auto iter = neighbors.begin(); iter != neighbors.end(); ++iter )
+    for ( const auto coordinate : neighbors )
     {
-      if ( isMine( *iter ) )
+      if ( isMine( coordinate ) )
       {
         neighbouringMines++;
       }
@@ -280,22 +281,22 @@ namespace minesweeperGame
 
   void ms_game::revealAllMines()
   {
-    for ( auto iter = mines.begin(); iter != mines.end(); ++iter )
+    for ( const auto coordinate : mines )
     {
-      if ( board[ *iter ] != cellStateEnum::marked)
+      if ( board[ coordinate ] != cellStateEnum::marked)
       {
-        board[ *iter ] = cellStateEnum::mineWhite;
+        board[ coordinate ] = cellStateEnum::mineWhite;
       }
     }
   }
 
   bool ms_game::isGameBoardRevealed() const
   {// Rename this function
-    for ( auto iter = board.begin(); iter != board.end(); ++iter )
+    for ( const auto square : board )
     {
-      if ( ( iter->second == cellStateEnum::marked &&
-        mines.find( iter->first ) == mines.end() ) ||
-        ( iter->second == cellStateEnum::unknown ) )
+      if ( ( square.second == cellStateEnum::marked &&
+        mines.find( square.first ) == mines.end() ) ||
+        ( square.second == cellStateEnum::unknown ) )
       {
         return false;
       }
@@ -410,11 +411,11 @@ namespace minesweeperGame
     setOfCoordinates allNeighborsCoordinates = getNeighborCoordinates( inputCoordinate );
     setOfCoordinates neighborsWithStateCoordinates;
 
-    for ( auto iter = allNeighborsCoordinates.begin(); iter != allNeighborsCoordinates.end(); ++iter )
+    for ( const auto coordinate : allNeighborsCoordinates )
     {
-      if ( board[ *iter ] == inputCellState )
+      if ( board[ coordinate ] == inputCellState )
       {
-        neighborsWithStateCoordinates.insert( *iter );
+        neighborsWithStateCoordinates.insert( coordinate );
       }
     }
 
@@ -429,11 +430,11 @@ namespace minesweeperGame
   setOfCoordinates ms_game::getCoordinatesBasedOnState( cellStateEnum inputCellState )
   {
     setOfCoordinates stateCoordinates;
-    for ( auto iter = board.begin(); iter != board.end(); ++iter )
+    for ( const auto square : board )
     {
-      if ( iter->second == inputCellState )
+      if ( square.second == inputCellState )
       {
-        stateCoordinates.insert( iter->first );
+        stateCoordinates.insert( square.first );
       }
     }
 
