@@ -1,9 +1,9 @@
 #include "minesweeperGame.h"
 #include <stdexcept>
 #include <algorithm>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include <cstdio>
+#include <cstdlib>
+#include <ctime>
 #include <queue>
 
 namespace minesweeperGame

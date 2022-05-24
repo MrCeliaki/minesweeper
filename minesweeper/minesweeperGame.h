@@ -1,6 +1,6 @@
 #if !defined(MINESWEEPER_GAME_H)
 #define MINESWEEPER_GAME_H
-#include <stdint.h>
+#include <cstdint>
 #include <map>
 #include <set>
 

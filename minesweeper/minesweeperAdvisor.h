@@ -1,7 +1,7 @@
 #if !defined(MINESWEEPER_SOLVER_H)
 #define MINESWEEPER_SOLVER_H
 #include "minesweeperGame.h"
-#include <stdint.h>
+#include <cstdint>
 #include <map>
 #include <set>
 

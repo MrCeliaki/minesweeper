@@ -1,5 +1,5 @@
-#include<iostream>
-#include<sstream>
+#include <iostream>
+#include <sstream>
 #include <vector>
 #include <algorithm>
 #include "minesweeperGame.h"
@@ -7,7 +7,7 @@
 #include "minesweeper.h"
 #include <string>
 #include <Windows.h>
-#include <time.h>
+#include <ctime>
 
 // minesweeper.cpp/minesweeper.h -> "Prototype code" 
 // These files are intended to be discarded and replaced once
