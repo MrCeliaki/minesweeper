@@ -448,35 +448,35 @@ namespace minesweeperGame
     switch ( inputState )
     {
       break;
-    case minesweeperGame::oneBlue:
+    case cellStateEnum::oneBlue:
       numberOfMines = 1;
       break;
-    case minesweeperGame::twoGreen:
+    case cellStateEnum::twoGreen:
       numberOfMines = 2;
       break;
-    case minesweeperGame::threeRed:
+    case cellStateEnum::threeRed:
       numberOfMines = 3;
       break;
-    case minesweeperGame::fourDarkBlue:
+    case cellStateEnum::fourDarkBlue:
       numberOfMines = 4;
       break;
-    case minesweeperGame::fiveBrown:
+    case cellStateEnum::fiveBrown:
       numberOfMines = 5;
       break;
-    case minesweeperGame::sixTeal:
+    case cellStateEnum::sixTeal:
       numberOfMines = 6;
       break;
-    case minesweeperGame::sevenBlack:
+    case cellStateEnum::sevenBlack:
       numberOfMines = 7;
       break;
-    case minesweeperGame::eightGrey:
+    case cellStateEnum::eightGrey:
       numberOfMines = 8;
       break;
-    case minesweeperGame::mineWhite:
-    case minesweeperGame::mineRed:
-    case minesweeperGame::marked:
-    case minesweeperGame::unknown:
-    case minesweeperGame::empty:
+    case cellStateEnum::mineWhite:
+    case cellStateEnum::mineRed:
+    case cellStateEnum::marked:
+    case cellStateEnum::unknown:
+    case cellStateEnum::empty:
     default:
       break;
     }

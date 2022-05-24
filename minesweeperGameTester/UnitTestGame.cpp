@@ -520,19 +520,19 @@ TEST( Interface, convertStateEnumToNumberOfMines )
 
   minesweeperGame::ms_game game( width, height, numOfMine );
 
-  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::oneBlue ), 1 );
-  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::twoGreen ), 2 );
-  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::threeRed ), 3 );
-  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::fourDarkBlue ), 4 );
-  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::fiveBrown ), 5 );
-  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::sixTeal ), 6 );
-  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::sevenBlack ), 7 );
-  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::eightGrey ), 8 );
+  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::cellStateEnum::oneBlue ), 1 );
+  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::cellStateEnum::twoGreen ), 2 );
+  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::cellStateEnum::threeRed ), 3 );
+  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::cellStateEnum::fourDarkBlue ), 4 );
+  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::cellStateEnum::fiveBrown ), 5 );
+  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::cellStateEnum::sixTeal ), 6 );
+  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::cellStateEnum::sevenBlack ), 7 );
+  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::cellStateEnum::eightGrey ), 8 );
 
-  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::mineWhite ), 0 );
-  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::mineRed ), 0 );
-  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::marked ), 0 );
-  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::unknown ), 0 );
-  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::empty ), 0 );
+  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::cellStateEnum::mineWhite ), 0 );
+  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::cellStateEnum::mineRed ), 0 );
+  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::cellStateEnum::marked ), 0 );
+  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::cellStateEnum::unknown ), 0 );
+  ASSERT_EQ( game.convertStateEnumToNumberOfMines( minesweeperGame::cellStateEnum::empty ), 0 );
 
 }

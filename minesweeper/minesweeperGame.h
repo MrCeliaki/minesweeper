@@ -6,14 +6,14 @@
 
 namespace minesweeperGame
 {
-  enum gameStateEnum
+  enum class gameStateEnum
   {
     playing,
     lost,
     won
   };
 
-  enum cellStateEnum
+  enum class cellStateEnum
   {
     mineWhite,
     mineRed,
